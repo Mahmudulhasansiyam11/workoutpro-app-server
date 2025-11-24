@@ -33,6 +33,13 @@ async function run() {
     const workOutCollection = workOutsDB.collection("workOuts");
 
     // add database related apis here
+
+    app.get('/workOuts', async (req, res) => {
+        const cursor = workOutCollection.find();
+        const result = await cursor.toArray();
+        res.send(result);
+    })
+
     // add database api
     app.post("/workOuts", async (req, res) => {
       const newWorkOut = req.body;
