@@ -33,10 +33,18 @@ async function run() {
     const workOutCollection = workOutsDB.collection("workOuts");
 
     // add database related apis here
-
+    // find all document using get method
     app.get('/workOuts', async (req, res) => {
         const cursor = workOutCollection.find();
         const result = await cursor.toArray();
+        res.send(result);
+    })
+
+    // find specific document using get method
+    app.get("/workOuts/:id", async (req, res) => {
+        const id = req.params.id;
+        const query = { _id: new ObjectId(id) };
+        const result = await workOutCollection.findOne(query);
         res.send(result);
     })
 
