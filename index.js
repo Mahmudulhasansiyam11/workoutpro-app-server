@@ -35,7 +35,7 @@ async function run() {
     // add database related apis here
     // find all document using get method
     app.get('/workOuts', async (req, res) => {
-        const cursor = workOutCollection.find();
+        const cursor = workOutCollection.find().sort({duration: -1}).limit(6);
         const result = await cursor.toArray();
         res.send(result);
     })
@@ -45,6 +45,12 @@ async function run() {
         const id = req.params.id;
         const query = { _id: new ObjectId(id) };
         const result = await workOutCollection.findOne(query);
+        res.send(result);
+    })
+
+    app.get("/allWorkOuts", async (req, res) => {
+        const cursor = workOutCollection.find();
+        const result = await cursor.toArray();
         res.send(result);
     })
 
