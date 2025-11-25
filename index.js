@@ -27,7 +27,7 @@ app.get("/", (req, res) => {
 async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
-    await client.connect();
+    // await client.connect();
 
     const workOutsDB = client.db("workOutsDB");
     const workOutCollection = workOutsDB.collection("workOuts");
@@ -71,7 +71,7 @@ async function run() {
       res.send(result);
     });
 
-    
+
     // updata database api
     app.patch("/workOuts/:id", async (req, res) => {
       const id = req.params.id;
@@ -93,7 +93,7 @@ async function run() {
     });
 
     // Send a ping to confirm a successful connection
-    await client.db("admin").command({ ping: 1 });
+    // await client.db("admin").command({ ping: 1 });
     console.log(
       "Pinged your deployment. You successfully connected to MongoDB!"
     );
