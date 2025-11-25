@@ -54,6 +54,15 @@ async function run() {
         res.send(result);
     })
 
+    // find specific document using get method
+    app.get("/allWorkOuts/:id", async (req, res) => {
+        const id = req.params.id;
+        const query = { _id: new ObjectId(id) };
+        const result = await workOutCollection.findOne(query);
+        res.send(result);
+    })
+
+
     // add database api
     app.post("/workOuts", async (req, res) => {
       const newWorkOut = req.body;
@@ -62,6 +71,7 @@ async function run() {
       res.send(result);
     });
 
+    
     // updata database api
     app.patch("/workOuts/:id", async (req, res) => {
       const id = req.params.id;
